@@ -16,11 +16,6 @@ describe "#validate_params" do
     invalid_args = "string"
     expect(validate_params(invalid_args)).to eq(false)
   end
-
-  it 'return false if invalid length' do
-    invalid_length = [2, 3, 4]
-    expect(validate_params(invalid_length)).to eq(false)
-  end
 end
 
 describe "#phone_keys_mapper" do
@@ -31,7 +26,13 @@ describe "#phone_keys_mapper" do
 
   it 'returns all combinations' do
     valid_params = [2, 5]
-    expected_array = ["AJ", "AK", "AL", "BJ", "BK", "BL", "CJ", "CK", "CL"]
+    expected_array = ["AJ", "AK", "AL", "BJ", "BK", "BL", "CJ", "CK", "CL", "JA", "JB", "JC", "KA", "KB", "KC", "LA", "LB", "LC"]
+    expect(phone_keys_mapper(valid_params)).to eq(expected_array)
+  end
+
+  it 'returns all combinations with more then 2 elements' do
+    valid_params = [2, 5, 6]
+    expected_array = ["AJ", "AK", "AL", "AM", "AN", "AO", "BJ", "BK", "BL", "BM", "BN", "BO", "CJ", "CK", "CL", "CM", "CN", "CO", "JA", "JB", "JC", "JM", "JN", "JO", "KA", "KB", "KC", "KM", "KN", "KO", "LA", "LB", "LC", "LM", "LN", "LO", "MA", "MB", "MC", "MJ", "MK", "ML", "NA", "NB", "NC", "NJ", "NK", "NL", "OA", "OB", "OC", "OJ", "OK", "OL"]
     expect(phone_keys_mapper(valid_params)).to eq(expected_array)
   end
 end
